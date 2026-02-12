@@ -17,7 +17,23 @@ module testbench;
     
 
     reg [3:0] i;
-    reg [7:0] data [0:9] = {8'b00000001, 8'b00000001, 8'b00000010, 8'b00000100, 8'b00001000,8'b00010000, 8'b00100000, 8'b01000000, 8'b10000000, 8'b00000001};
+    // reg [7:0] data [0:9] = {8'b00000001, 8'b00000001, 8'b00000010, 8'b00000100, 8'b00001000,8'b00010000, 8'b00100000, 8'b01000000, 8'b10000000, 8'b00000001};
+    reg [7:0] data [0:9];
+
+    initial begin
+        data[0] = 8'b00000001;
+        data[1] = 8'b00000001;
+        data[2] = 8'b00000010;
+        data[3] = 8'b00000100;
+        data[4] = 8'b00001000;
+        data[5] = 8'b00010000;
+        data[6] = 8'b00100000;
+        data[7] = 8'b01000000;
+        data[8] = 8'b10000000;
+        data[9] = 8'b00000001;
+    end
+    // Changed to verilog syntax for iverilog.
+
 
     initial begin
         clk = 0;
@@ -32,7 +48,8 @@ module testbench;
             $display("Failed at i=%d, out=%b, expected=%b", i, out, data[i]);
             // $finish;
         end
-        i = i + 1;
+        // i = i + 1; // Not valid sequential statement
+        i <= i + 1;
     end
 
     // Stop simulation after checking all values
