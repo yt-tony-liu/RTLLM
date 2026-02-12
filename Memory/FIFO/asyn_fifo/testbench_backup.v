@@ -94,13 +94,12 @@ module asyn_fifo_tb;
   //   $display("wfull=%d, rempty=%d, rdata=%h", wfull, rempty, rdata);
   // end
 
-  initial begin: loop_block
+  initial begin
   repeat (17) begin
     #20;
     if (wfull) begin
       // $display("FIFO is full (wfull=1) at depth %d", $time);
-      // break;
-      disable loop_block; // iverilog does not support break, use disable to exit the loop
+      break;
     end
     winc = 1; // Enable write
     wdata = wdata + 1; // Write data
